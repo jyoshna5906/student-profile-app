@@ -28,3 +28,19 @@ samples, guidance on mobile development, and a full API reference.
 * Aligning text using `textAlign`
 
 **Result:** Successfully implemented a student profile screen using Flutter text widgets.
+
+
+## Experiment 2 – Basic Flutter Widgets
+
+**Objective:** To implement basic Flutter widgets in a Student Profile application.
+
+**Widgets Used:**
+1. Text
+2. Icon
+3. Row
+4. Column
+5. Stack
+6. Container
+7. Image
+
+**Result:** Successfully developed a Student Profile screen using basic Flutter widgets.
