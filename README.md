@@ -98,3 +98,16 @@ samples, guidance on mobile development, and a full API reference.
 
 **Result:** Successfully created custom widgets and applied themes and custom styles in Flutter.
 
+## Experiment 7 – Form Design and Validation
+
+**Objective:** To design a form with various input fields and implement form validation.
+
+**Concepts Used:**
+1. Form
+2. TextFormField
+3. TextEditingController
+4. GlobalKey
+5. Form Validation
+6. SnackBar
+
+**Result:** Successfully designed a registration form with input fields and validation.

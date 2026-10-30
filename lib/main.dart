@@ -5,74 +5,105 @@ void main() {
   runApp(MyApp());
 }
 
-// Main Theme
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        scaffoldBackgroundColor: Colors.white,
-      ),
-      home: HomePage(),
+      home: RegistrationForm(),
     );
   }
 }
 
-// Custom Widget
-class ProfileCard extends StatelessWidget {
-  final String name;
-  final String course;
-  final IconData icon;
+class RegistrationForm extends StatefulWidget {
+  @override
+  State<RegistrationForm> createState() => _RegistrationFormState();
+}
 
-  ProfileCard({
-    required this.name,
-    required this.course,
-    required this.icon,
-  });
+class _RegistrationFormState extends State<RegistrationForm> {
+  final _formKey = GlobalKey<FormState>();
+
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
 
   @override
-  Widget build(BuildContext context) {
-    return Card(
-      margin: EdgeInsets.all(10),
-      elevation: 4,
-      child: ListTile(
-        leading: Icon(icon, color: Colors.blue, size: 35),
-        title: Text(
-          name,
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        subtitle: Text(course),
-      ),
-    );
+  void dispose() {
+    nameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
   }
-}
 
-// Home Screen
-class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Custom Widgets'),
+        title: Text('Registration Form'),
+        backgroundColor: Colors.blue,
       ),
-      body: Column(
-        children: [
-          ProfileCard(
-            name: 'Jyoshna',
-            course: 'B.Tech CSE',
-            icon: Icons.person,
+      body: Padding(
+        padding: EdgeInsets.all(20),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              TextFormField(
+                controller: nameController,
+                decoration: InputDecoration(
+                  labelText: 'Enter Name',
+                  border: OutlineInputBorder(),
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your name';
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(height: 15),
+              TextFormField(
+                controller: emailController,
+                decoration: InputDecoration(
+                  labelText: 'Enter Email',
+                  border: OutlineInputBorder(),
+                ),
+                validator: (value) {
+                  if (value == null || !value.contains('@')) {
+                    return 'Enter a valid email';
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(height: 15),
+              TextFormField(
+                controller: passwordController,
+                obscureText: true,
+                decoration: InputDecoration(
+                  labelText: 'Enter Password',
+                  border: OutlineInputBorder(),
+                ),
+                validator: (value) {
+                  if (value == null || value.length < 6) {
+                    return 'Password must be at least 6 characters';
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Registration Successful!')),
+                    );
+                  }
+                },
+                child: Text('Submit'),
+              ),
+            ],
           ),
-          ProfileCard(
-            name: 'Student',
-            course: 'Flutter Development',
-            icon: Icons.school,
-          ),
-        ],
+        ),
       ),
     );
   }
