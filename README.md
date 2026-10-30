@@ -111,3 +111,16 @@ samples, guidance on mobile development, and a full API reference.
 6. SnackBar
 
 **Result:** Successfully designed a registration form with input fields and validation.
+
+## Experiment 8 – Animations in Flutter
+
+**Objective:** To add animations to UI elements using Flutter's animation framework.
+
+**Concepts Used:**
+1. AnimatedOpacity
+2. AnimatedSlide
+3. Duration
+4. StatefulWidget
+5. setState()
+
+**Result:** Successfully implemented fade and slide animations in Flutter.
