@@ -44,3 +44,16 @@ samples, guidance on mobile development, and a full API reference.
 7. Image
 
 **Result:** Successfully developed a Student Profile screen using basic Flutter widgets.
+
+
+## Experiment 3 – Responsive UI Design
+
+**Objective:** To design a responsive UI that adapts to different screen sizes.
+
+**Concepts Used:**
+1. MediaQuery
+2. LayoutBuilder
+3. Breakpoints
+4. Row and Column
+
+**Result:** Successfully implemented a responsive UI using Flutter.

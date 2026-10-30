@@ -10,127 +10,63 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Student Profile'),
-          backgroundColor: Colors.blue,
-          foregroundColor: Colors.white,
-        ),
-        body: SingleChildScrollView(
-          child: Center(
-            child: Column(
-              children: [
-                const SizedBox(height: 20),
+      home: ResponsivePage(),
+    );
+  }
+}
 
-                // Stack and Container widgets
-                Stack(
-                  alignment: Alignment.bottomRight,
-                  children: [
-                    Container(
-                      width: 130,
-                      height: 130,
-                      decoration: BoxDecoration(
-                        color: Colors.blue.shade100,
-                        shape: BoxShape.circle,
-                      ),
-                      child: const Icon(
-                        Icons.person,
-                        size: 90,
-                        color: Colors.blue,
-                      ),
-                    ),
-                    const CircleAvatar(
-                      radius: 18,
-                      backgroundColor: Colors.green,
-                      child: Icon(
-                        Icons.check,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
-                ),
+class ResponsivePage extends StatelessWidget {
+  const ResponsivePage({super.key});
 
-                const SizedBox(height: 15),
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Responsive UI"),
+        backgroundColor: Colors.blue,
+      ),
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          bool isWide = constraints.maxWidth > 600;
 
-                const Text(
-                  'Jyoshna',
-                  style: TextStyle(
-                    fontSize: 26,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-
-                const Text(
-                  'Computer Science Engineering',
-                  textAlign: TextAlign.center,
-                ),
-
-                const SizedBox(height: 25),
-
-                // Container, Column, Row and Icon widgets
-                Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 20),
-                  padding: const EdgeInsets.all(15),
-                  decoration: BoxDecoration(
-                    color: Colors.blue.shade50,
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: const Column(
+          return Center(
+            child: isWide
+                ? Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Row(
-                        children: [
-                          Icon(Icons.school, color: Colors.blue),
-                          SizedBox(width: 12),
-                          Text('Year: 3rd Year'),
-                        ],
-                      ),
-                      SizedBox(height: 15),
-                      Row(
-                        children: [
-                          Icon(Icons.computer, color: Colors.blue),
-                          SizedBox(width: 12),
-                          Text('Branch: CSE'),
-                        ],
-                      ),
-                      SizedBox(height: 15),
-                      Row(
-                        children: [
-                          Icon(Icons.email, color: Colors.blue),
-                          SizedBox(width: 12),
-                          Text('Email: student@example.com'),
-                        ],
-                      ),
+                      const Icon(Icons.person,
+                          size: 100, color: Colors.blue),
+                      const SizedBox(width: 20),
+                      profileDetails(),
+                    ],
+                  )
+                : Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(Icons.person,
+                          size: 100, color: Colors.blue),
+                      const SizedBox(height: 20),
+                      profileDetails(),
                     ],
                   ),
-                ),
-
-                const SizedBox(height: 25),
-
-                ClipRRect(
-  borderRadius: BorderRadius.circular(12),
-  child: Image.asset(
-    'assets/profile.png',
-    width: 120,
-    height: 120,
-    fit: BoxFit.cover,
-  ),
-),
-
-                const SizedBox(height: 20),
-
-                const Text(
-                  'Welcome to My Profile!',
-                  style: TextStyle(fontSize: 18),
-                ),
-
-                const SizedBox(height: 25),
-              ],
-            ),
-          ),
-        ),
+          );
+        },
       ),
+    );
+  }
+
+  Widget profileDetails() {
+    return const Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text("Jyoshna",
+            style: TextStyle(
+                fontSize: 25, fontWeight: FontWeight.bold)),
+        Text("CSE - 3rd Year"),
+        Text("Responsive Flutter Application"),
+      ],
     );
   }
 }
