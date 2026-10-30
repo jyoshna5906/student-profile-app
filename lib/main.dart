@@ -1,5 +1,7 @@
 
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 void main() {
   runApp(MyApp());
@@ -10,68 +12,75 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: AnimationPage(),
+      home: UserPage(),
     );
   }
 }
 
-class AnimationPage extends StatefulWidget {
+class UserPage extends StatefulWidget {
   @override
-  State<AnimationPage> createState() => _AnimationPageState();
+  State<UserPage> createState() => _UserPageState();
 }
 
-class _AnimationPageState extends State<AnimationPage> {
-  bool showBox = true;
+class _UserPageState extends State<UserPage> {
+  List users = [];
+  bool isLoading = true;
+
+  Future<void> fetchUsers() async {
+    try {
+      final response = await http.get(
+        Uri.parse('https://jsonplaceholder.typicode.com/users'),
+      );
+
+      if (response.statusCode == 200) {
+        setState(() {
+          users = jsonDecode(response.body);
+          isLoading = false;
+        });
+      } else {
+        setState(() {
+          isLoading = false;
+        });
+      }
+    } catch (e) {
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    fetchUsers();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Flutter Animations'),
+        title: Text('REST API Users'),
         backgroundColor: Colors.blue,
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            AnimatedOpacity(
-              opacity: showBox ? 1.0 : 0.0,
-              duration: Duration(seconds: 1),
-              child: Container(
-                height: 100,
-                width: 100,
-                color: Colors.blue,
-                child: Center(
-                  child: Text(
-                    'Hello',
-                    style: TextStyle(color: Colors.white, fontSize: 20),
-                  ),
+      body: isLoading
+          ? Center(child: CircularProgressIndicator())
+          : users.isEmpty
+              ? Center(child: Text('Unable to fetch data'))
+              : ListView.builder(
+                  itemCount: users.length,
+                  itemBuilder: (context, index) {
+                    return Card(
+                      margin: EdgeInsets.all(10),
+                      child: ListTile(
+                        leading: CircleAvatar(
+                          child: Text('${users[index]['id']}'),
+                        ),
+                        title: Text(users[index]['name']),
+                        subtitle: Text(users[index]['email']),
+                      ),
+                    );
+                  },
                 ),
-              ),
-            ),
-            SizedBox(height: 30),
-            AnimatedSlide(
-              offset: showBox ? Offset(0, 0) : Offset(1, 0),
-              duration: Duration(seconds: 1),
-              child: Container(
-                height: 80,
-                width: 80,
-                color: Colors.orange,
-                child: Icon(Icons.star, color: Colors.white, size: 40),
-              ),
-            ),
-            SizedBox(height: 30),
-            ElevatedButton(
-              onPressed: () {
-                setState(() {
-                  showBox = !showBox;
-                });
-              },
-              child: Text('Start Animation'),
-            ),
-          ],
-        ),
-      ),
     );
   }
 }

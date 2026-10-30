@@ -124,3 +124,18 @@ samples, guidance on mobile development, and a full API reference.
 5. setState()
 
 **Result:** Successfully implemented fade and slide animations in Flutter.
+
+## Experiment 9 – Fetch Data from REST API
+
+**Objective:** To fetch data from a REST API and display the fetched data in the UI.
+
+**Concepts Used:**
+1. REST API
+2. HTTP Package
+3. http.get()
+4. JSON Parsing
+5. Future and async/await
+6. ListView.builder
+7. CircularProgressIndicator
+
+**Result:** Successfully fetched user data from a REST API and displayed it in the Flutter UI.
