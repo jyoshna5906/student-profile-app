@@ -57,3 +57,15 @@ samples, guidance on mobile development, and a full API reference.
 4. Row and Column
 
 **Result:** Successfully implemented a responsive UI using Flutter.
+
+## Experiment 4 – Navigation in Flutter
+
+**Objective:** To implement navigation between different screens using Navigator and named routes.
+
+**Concepts Used:**
+1. Navigator.pushNamed()
+2. Navigator.pop()
+3. Named Routes
+4. MaterialApp
+
+**Result:** Successfully implemented screen navigation using Flutter.
