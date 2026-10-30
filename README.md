@@ -69,3 +69,17 @@ samples, guidance on mobile development, and a full API reference.
 4. MaterialApp
 
 **Result:** Successfully implemented screen navigation using Flutter.
+
+## Experiment 5 – Stateful and Stateless Widgets
+
+**Objective:** To understand Stateful and Stateless widgets and implement state management using setState and Provider.
+
+**Concepts Used:**
+1. StatefulWidget
+2. StatelessWidget
+3. setState()
+4. Provider
+5. ChangeNotifier
+6. Consumer
+
+**Result:** Successfully implemented state management using setState and Provider.
