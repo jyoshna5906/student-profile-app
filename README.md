@@ -83,3 +83,18 @@ samples, guidance on mobile development, and a full API reference.
 6. Consumer
 
 **Result:** Successfully implemented state management using setState and Provider.
+
+## Experiment 6 – Custom Widgets and Themes
+
+**Objective:** To create custom widgets and apply styling using themes and custom styles.
+
+**Concepts Used:**
+1. StatelessWidget
+2. Custom Widgets
+3. ThemeData
+4. TextStyle
+5. Card
+6. ListTile
+
+**Result:** Successfully created custom widgets and applied themes and custom styles in Flutter.
+

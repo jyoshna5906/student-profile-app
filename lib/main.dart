@@ -1,89 +1,78 @@
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-// Provider class
-class CounterProvider extends ChangeNotifier {
-  int count = 0;
-
-  void increment() {
-    count++;
-    notifyListeners();
-  }
-}
-
-// Main function
 void main() {
-  runApp(
-    ChangeNotifierProvider(
-      create: (context) => CounterProvider(),
-      child: MyApp(),
-    ),
-  );
+  runApp(MyApp());
 }
 
-// Stateless Widget
+// Main Theme
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: CounterScreen(),
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        scaffoldBackgroundColor: Colors.white,
+      ),
+      home: HomePage(),
     );
   }
 }
 
-// Stateful Widget
-class CounterScreen extends StatefulWidget {
+// Custom Widget
+class ProfileCard extends StatelessWidget {
+  final String name;
+  final String course;
+  final IconData icon;
+
+  ProfileCard({
+    required this.name,
+    required this.course,
+    required this.icon,
+  });
+
   @override
-  State<CounterScreen> createState() => _CounterScreenState();
+  Widget build(BuildContext context) {
+    return Card(
+      margin: EdgeInsets.all(10),
+      elevation: 4,
+      child: ListTile(
+        leading: Icon(icon, color: Colors.blue, size: 35),
+        title: Text(
+          name,
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        subtitle: Text(course),
+      ),
+    );
+  }
 }
 
-class _CounterScreenState extends State<CounterScreen> {
-  int localCount = 0;
-
+// Home Screen
+class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('State Management'),
-        backgroundColor: Colors.blue,
+        title: Text('Custom Widgets'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('Using setState()'),
-            Text(
-              '$localCount',
-              style: TextStyle(fontSize: 30),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                setState(() {
-                  localCount++;
-                });
-              },
-              child: Text('Increment Local'),
-            ),
-            SizedBox(height: 30),
-            Text('Using Provider'),
-            Consumer<CounterProvider>(
-              builder: (context, counter, child) {
-                return Text(
-                  '${counter.count}',
-                  style: TextStyle(fontSize: 30),
-                );
-              },
-            ),
-            ElevatedButton(
-              onPressed: () {
-                context.read<CounterProvider>().increment();
-              },
-              child: Text('Increment Provider'),
-            ),
-          ],
-        ),
+      body: Column(
+        children: [
+          ProfileCard(
+            name: 'Jyoshna',
+            course: 'B.Tech CSE',
+            icon: Icons.person,
+          ),
+          ProfileCard(
+            name: 'Student',
+            course: 'Flutter Development',
+            icon: Icons.school,
+          ),
+        ],
       ),
     );
   }
