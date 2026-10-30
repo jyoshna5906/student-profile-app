@@ -15,3 +15,16 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+## Experiment 1 – Text Widget
+
+**Objective:** To understand and implement the Flutter Text widget.
+
+**Concepts covered:**
+
+* Displaying text using `Text`
+* Changing font size using `fontSize`
+* Making text bold using `fontWeight`
+* Changing text colour using `color`
+* Aligning text using `textAlign`
+
+**Result:** Successfully implemented a student profile screen using Flutter text widgets.
