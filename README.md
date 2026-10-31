@@ -44,6 +44,7 @@ samples, guidance on mobile development, and a full API reference.
 7. Image
 
 **Result:** Successfully developed a Student Profile screen using basic Flutter widgets.
+<<<<<<< HEAD
 
 
 ## Experiment 3 – Responsive UI Design
@@ -139,3 +140,22 @@ samples, guidance on mobile development, and a full API reference.
 7. CircularProgressIndicator
 
 **Result:** Successfully fetched user data from a REST API and displayed it in the Flutter UI.
+
+
+
+
+**Result:** Successfully developed a Student Profile screen using basic Flutter widgets.
+
+## Experiment 10 – Unit Testing and Debugging
+
+**Objective:** To write unit tests for UI components and use Flutter debugging tools to identify and fix issues.
+
+**Concepts Used:**
+1. Widget Testing
+2. flutter_test
+3. testWidgets()
+4. WidgetTester
+5. expect()
+6. Debugging
+
+**Result:** Successfully tested Flutter UI components and practiced debugging.
